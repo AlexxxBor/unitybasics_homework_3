@@ -46,7 +46,7 @@ namespace Sample
             Vector2 c2, float r2
         )
         {
-            throw new NotImplementedException();
+            return (c1 - c2).magnitude + r1 <= r2 ? true : false;
         }
 
         /**
@@ -57,7 +57,17 @@ namespace Sample
         */
         public static float PointRelativeLine(Vector2 start, Vector2 end, Vector2 point)
         {
-            throw new NotImplementedException();
+            Vector2 startToPoint = point - start;
+            Vector2 startToEnd = end - start;
+
+            //Проверка коллинеарности векторов:
+            float crossProduct = Vector3.Cross(startToPoint, startToEnd).z;
+
+            if (crossProduct > 0)
+                return 1;
+            else if (crossProduct < 0)
+                return -1;
+            return 0;
         }
 
 

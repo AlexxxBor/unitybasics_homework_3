@@ -51,7 +51,7 @@ namespace Tests
             Assert.IsTrue(IsPointInRectangle(Vector2.zero, new Vector2(2, 2), new Vector2(1, 1)));
             Assert.IsTrue(IsPointInRectangle(Vector2.zero, new Vector2(2, 2), new Vector2(2, 2)));
             Assert.IsFalse(IsPointInRectangle(Vector2.zero, new Vector2(2, 2), new Vector2(3, 3)));
-            Assert.IsTrue(IsPointInRectangle(new Vector2(1, 4), new Vector2(5, 2), new Vector2(2, 1.5f)));
+            Assert.IsTrue(IsPointInRectangle(new Vector2(1, 4), new Vector2(5, 2), new Vector2(2, 2.5f)));
             Assert.IsTrue(IsPointInRectangle(Vector2.zero, new Vector2(2, 0), new Vector2(1, 0)));
             Assert.IsTrue(IsPointInRectangle(Vector2.zero, Vector2.zero, Vector2.zero));
         }
