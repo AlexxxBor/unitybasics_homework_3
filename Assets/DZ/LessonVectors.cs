@@ -140,16 +140,17 @@ namespace Sample
         */
         public static bool RayCircleIntersect(Ray ray, Vector3 center, float radius)
         {
-            Vector3 axis = center - ray.origin;
-            float osProjection = Vector3.Dot(ray.direction, axis);
+            float rayOriginToSphereCenterDistance = (center - ray.origin).magnitude;
             
-            if (osProjection < 0)
+            if (Math.Floor(rayOriginToSphereCenterDistance) <= radius)
+            {
                 return false;
+            }
 
-            float axis2 = Vector3.Dot(axis, axis);
-            float distance2 = axis2 - osProjection * osProjection;
-
-            if (distance2 > radius)
+            Vector3 intersection = ray.GetPoint(rayOriginToSphereCenterDistance);
+            float sphereCenterToIntersectionDistance = (center - intersection).magnitude;
+            
+            if (Math.Floor(sphereCenterToIntersectionDistance) > radius)
             {
                 return false;
             }
