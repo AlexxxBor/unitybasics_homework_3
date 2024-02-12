@@ -79,7 +79,23 @@ namespace Sample
         */
         public static bool IsPointInRectangle(Vector2 start, Vector2 end, Vector2 point)
         {
-            throw new NotImplementedException();
+            if (start.y > end.y)
+            {
+                Vector2 newStart = new Vector2(start.x, end.y);
+                Vector2 newEnd = new Vector2(end.x, start.y);
+                start = newStart;
+                end = newEnd;
+            }
+            
+            if (point.x >= start.x && point.x <= end.x)
+            {
+                if (point.y >= start.y && point.y <= end.y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         
         /**
@@ -104,7 +120,15 @@ namespace Sample
          */
         public static int KingMoveNumber(Vector2Int start, Vector2Int end)
         {
-            throw new NotImplementedException();
+            const int firstCell = 1;
+            const int lastCell  = 8;
+
+            if (start.x < firstCell || start.y > lastCell || end.x < firstCell || end.y > lastCell)
+            {
+                throw new IllegalArgumentException();
+            }
+            
+            return Mathf.Max(Mathf.Abs(start.x - end.x), Mathf.Abs(start.y - end.y));
         }
 
         /**
@@ -119,4 +143,6 @@ namespace Sample
             throw new NotImplementedException();
         }
     }
+
+    public class IllegalArgumentException : ArgumentException { }
 }
