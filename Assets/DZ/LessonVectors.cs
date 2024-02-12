@@ -140,7 +140,21 @@ namespace Sample
         */
         public static bool RayCircleIntersect(Ray ray, Vector3 center, float radius)
         {
-            throw new NotImplementedException();
+            Vector3 axis = center - ray.origin;
+            float osProjection = Vector3.Dot(ray.direction, axis);
+            
+            if (osProjection < 0)
+                return false;
+
+            float axis2 = Vector3.Dot(axis, axis);
+            float distance2 = axis2 - osProjection * osProjection;
+
+            if (distance2 > radius)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 
